@@ -1,0 +1,2542 @@
+ <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدير كلمات المرور </title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="مدير كلمات مرور آمن وأنيق لحفظ وإدارة كلمات المرور الخاصة بك">
+    <meta name="keywords" content="مدير كلمات المرور, أمان, حماية, كلمات مرور قوية">
+    <style>
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Enhanced Color Palette - Cyberpunk Ocean Theme */
+    --primary-color: #00d4ff;
+    --primary-dark: #0099cc;
+    --primary-light: #33ddff;
+    --secondary-color: #00ff88;
+    --accent-color: #ff6b35;
+    --success-color: #00ff88;
+    --warning-color: #ffaa00;
+    --danger-color: #ff3366;
+    
+    /* Background Colors */
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #1a1f2e;
+    --bg-tertiary: #2a3441;
+    --bg-card: #1e2532;
+    --bg-modal: #252b3a;
+    
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #b8c5d1;
+    --text-muted: #8892a0;
+    
+    /* Border Colors */
+    --border-primary: #3a4553;
+    --border-secondary: #4a5568;
+    --border-accent: #00d4ff;
+    
+    /* Shadow Colors */
+    --shadow-primary: rgba(0, 212, 255, 0.5);
+    --shadow-secondary: rgba(0, 255, 136, 0.4);
+    --shadow-dark: rgba(0, 0, 0, 0.8);
+    --shadow-danger: rgba(255, 51, 102, 0.5);
+    --shadow-accent: rgba(255, 107, 53, 0.4);
+    
+    /* Enhanced Gradients */
+    --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #00ff88 100%);
+    --gradient-secondary: linear-gradient(135deg, #00ff88 0%, #00d4ff 50%, #ff6b35 100%);
+    --gradient-danger: linear-gradient(135deg, #ff3366 0%, #cc1144 100%);
+    --gradient-bg: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 50%, #2a3441 100%);
+    --gradient-card: linear-gradient(145deg, #1e2532 0%, #2a3441 100%);
+    --gradient-accent: linear-gradient(135deg, #ff6b35 0%, #ffaa00 100%);
+    
+    /* Neon Glows */
+    --glow-primary: 0 0 20px rgba(0, 212, 255, 0.6);
+    --glow-secondary: 0 0 20px rgba(0, 255, 136, 0.6);
+    --glow-danger: 0 0 20px rgba(255, 51, 102, 0.6);
+    --glow-accent: 0 0 20px rgba(255, 107, 53, 0.6);
+}
+
+body {
+    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--gradient-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    direction: rtl;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.6;
+}
+
+/* Enhanced Background Animation */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.floating-shapes {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    opacity: 0.1;
+    animation: float 30s infinite ease-in-out;
+    filter: blur(2px);
+}
+
+.shape-1 {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+    background: var(--gradient-primary);
+}
+
+.shape-2 {
+    width: 180px;
+    height: 180px;
+    top: 60%;
+    left: 80%;
+    animation-delay: 10s;
+    background: var(--gradient-secondary);
+}
+
+.shape-3 {
+    width: 100px;
+    height: 100px;
+    top: 80%;
+    left: 10%;
+    animation-delay: 20s;
+    background: var(--gradient-accent);
+}
+
+.shape-4 {
+    width: 150px;
+    height: 150px;
+    top: 20%;
+    left: 70%;
+    animation-delay: 5s;
+    background: var(--gradient-primary);
+}
+
+.shape-5 {
+    width: 200px;
+    height: 200px;
+    top: 5%;
+    left: 40%;
+    animation-delay: 15s;
+    background: var(--gradient-secondary);
+}
+
+.shape-6 {
+    width: 110px;
+    height: 110px;
+    top: 45%;
+    left: 2%;
+    animation-delay: 25s;
+    background: var(--gradient-accent);
+}
+
+.gradient-orbs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.2;
+    animation: orb-float 40s infinite ease-in-out;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--gradient-primary);
+    top: 15%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 350px;
+    height: 350px;
+    background: var(--gradient-secondary);
+    top: 55%;
+    left: 65%;
+    animation-delay: 15s;
+}
+
+.orb-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--gradient-accent);
+    top: 75%;
+    left: 25%;
+    animation-delay: 30s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateY(-50px) rotate(90deg) scale(1.2);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg) scale(0.8);
+    }
+    75% {
+        transform: translateY(-70px) rotate(270deg) scale(1.1);
+    }
+}
+
+@keyframes orb-float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(60px, -40px) scale(1.2);
+    }
+    66% {
+        transform: translate(-40px, 50px) scale(0.8);
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced Header */
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.logo-icon {
+    position: relative;
+    background: var(--gradient-primary);
+    padding: 2.5rem;
+    border-radius: 30px;
+    box-shadow: var(--glow-primary);
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+}
+
+.logo-icon:hover {
+    transform: translateY(-10px) rotateY(20deg) scale(1.1);
+    box-shadow: var(--glow-primary), 0 30px 80px var(--shadow-primary);
+}
+
+.logo-icon i {
+    font-size: 4rem;
+    color: white;
+    display: block;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+}
+
+.logo-glow {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: var(--gradient-primary);
+    border-radius: 40px;
+    opacity: 0.5;
+    filter: blur(30px);
+    z-index: -1;
+    animation: pulse 4s infinite;
+}
+
+.logo-text h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    text-shadow: var(--glow-primary);
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+}
+
+.version {
+    display: inline-block;
+    background: var(--gradient-accent);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 700;
+    box-shadow: var(--glow-accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    line-height: 2;
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+/* Enhanced Stats Cards */
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+.stat-card {
+    background: var(--gradient-card);
+    border: 2px solid var(--border-primary);
+    border-radius: 25px;
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    transition: all 0.5s ease;
+    backdrop-filter: blur(25px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+}
+
+.stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    border-color: var(--border-accent);
+    box-shadow: var(--glow-primary), 0 25px 80px var(--shadow-primary);
+}
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-card:hover::after {
+    opacity: 0.08;
+}
+
+.stat-icon {
+    background: var(--gradient-primary);
+    padding: 2rem;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.8rem;
+    box-shadow: var(--glow-primary);
+    transition: all 0.4s ease;
+    min-width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: var(--glow-primary), 0 15px 40px var(--shadow-primary);
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.stat-number {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1;
+    text-shadow: var(--glow-primary);
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+/* Enhanced Add Button */
+.add-btn {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 2rem 4rem;
+    border-radius: 25px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: var(--glow-primary);
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 1s ease 0.6s both;
+    transform-style: preserve-3d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.add-btn:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: var(--glow-primary), 0 25px 60px var(--shadow-primary);
+}
+
+.add-btn:active {
+    transform: translateY(-4px) scale(1.02);
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-content i {
+    font-size: 1.5rem;
+    transition: transform 0.4s ease;
+}
+
+.add-btn:hover .btn-content i {
+    transform: rotate(180deg) scale(1.2);
+}
+
+.btn-glow {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: var(--gradient-primary);
+    border-radius: 29px;
+    opacity: 0;
+    filter: blur(20px);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.add-btn:hover .btn-glow {
+    opacity: 1;
+}
+
+/* Enhanced Search Container */
+.search-container {
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease 0.9s both;
+}
+
+.search-box {
+    position: relative;
+    background: var(--gradient-card);
+    border: 2px solid var(--border-primary);
+    border-radius: 25px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.5s ease;
+    backdrop-filter: blur(25px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.search-box:focus-within {
+    border-color: var(--border-accent);
+    box-shadow: var(--glow-primary), 0 0 0 6px var(--shadow-primary);
+    transform: translateY(-4px);
+}
+
+.search-box i {
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+    transition: color 0.4s ease;
+}
+
+.search-box:focus-within i {
+    color: var(--primary-color);
+}
+
+.search-box input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    outline: none;
+    font-weight: 600;
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
+
+.clear-search {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+}
+
+.clear-search:hover {
+    background: var(--bg-tertiary);
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* Enhanced Empty State */
+.empty-state {
+    text-align: center;
+    margin-top: 4rem;
+    animation: fadeInUp 1s ease 1.2s both;
+}
+
+.empty-icon {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 4rem;
+}
+
+.empty-icon i {
+    font-size: 10rem;
+    color: var(--text-muted);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+}
+
+.empty-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    opacity: 0.2;
+    filter: blur(50px);
+    animation: pulse 5s infinite;
+}
+
+.empty-state h2 {
+    font-size: 2.8rem;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    font-weight: 800;
+    text-shadow: var(--glow-primary);
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+    line-height: 2;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+}
+
+.empty-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1.5rem;
+    background: var(--gradient-card);
+    border-radius: 15px;
+    border: 2px solid var(--border-primary);
+    transition: all 0.4s ease;
+    backdrop-filter: blur(25px);
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    border-color: var(--border-accent);
+    box-shadow: var(--glow-secondary);
+}
+
+.feature i {
+    color: var(--success-color);
+    font-size: 1.3rem;
+}
+
+/* Enhanced Passwords List */
+.passwords-list {
+    width: 100%;
+    max-width: 900px;
+    margin-top: 3rem;
+    animation: fadeInUp 1s ease 1.5s both;
+}
+
+.password-item {
+    background: var(--gradient-card);
+    border: 2px solid var(--border-primary);
+    border-radius: 30px;
+    padding: 3rem;
+    margin-bottom: 2.5rem;
+    transition: all 0.5s ease;
+    backdrop-filter: blur(25px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+}
+
+.password-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+}
+
+.password-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.password-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--border-accent);
+    box-shadow: var(--glow-primary), 0 30px 100px var(--shadow-primary);
+}
+
+.password-item:hover::before {
+    transform: scaleX(1);
+}
+
+.password-item:hover::after {
+    opacity: 0.05;
+}
+
+.password-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.password-item-title {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.website-favicon {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    box-shadow: var(--glow-primary);
+    transition: all 0.4s ease;
+}
+
+.password-item:hover .website-favicon {
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: var(--glow-primary), 0 10px 30px var(--shadow-primary);
+}
+
+.website-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    text-shadow: var(--glow-primary);
+}
+
+.password-item-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-primary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 1.2rem;
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    font-size: 1.1rem;
+    min-width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(25px);
+}
+
+.action-btn:hover {
+    background: var(--gradient-primary);
+    border-color: var(--border-accent);
+    color: white;
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: var(--glow-primary);
+}
+
+.action-btn.danger:hover {
+    background: var(--danger-color);
+    border-color: var(--danger-color);
+    box-shadow: var(--glow-danger);
+}
+
+.password-item-details {
+    display: grid;
+    gap: 2rem;
+}
+
+.password-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    border: 2px solid var(--border-primary);
+    transition: all 0.4s ease;
+    backdrop-filter: blur(25px);
+}
+
+.password-detail:hover {
+    border-color: var(--border-accent);
+    transform: translateX(-8px);
+    box-shadow: var(--glow-secondary);
+}
+
+.password-detail-label {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.password-detail-value {
+    color: var(--text-primary);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Enhanced Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+    animation: fadeIn 0.5s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: var(--gradient-card);
+    border: 2px solid var(--border-secondary);
+    border-radius: 30px;
+    padding: 4rem;
+    max-width: 700px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--glow-primary), 0 40px 120px var(--shadow-dark);
+    animation: slideUp 0.5s ease;
+    position: relative;
+    backdrop-filter: blur(25px);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--border-primary);
+}
+
+.modal-title {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.modal-title i {
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+.modal-title h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    text-shadow: var(--glow-primary);
+}
+
+.close-btn {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-primary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 1.2rem;
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    background: var(--danger-color);
+    border-color: var(--danger-color);
+    color: white;
+    transform: scale(1.2);
+    box-shadow: var(--glow-danger);
+}
+
+.modal-description {
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    font-size: 1.2rem;
+    line-height: 2;
+    font-weight: 500;
+}
+
+/* Enhanced Confirmation Modal */
+.confirmation-modal {
+    background: var(--gradient-card);
+    border: 2px solid var(--border-secondary);
+    border-radius: 30px;
+    padding: 4rem;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: var(--glow-danger), 0 40px 120px var(--shadow-dark);
+    animation: slideUp 0.5s ease;
+    position: relative;
+    backdrop-filter: blur(25px);
+    text-align: center;
+}
+
+.confirmation-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 2.5rem;
+    background: var(--gradient-danger);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: var(--glow-danger);
+}
+
+.confirmation-icon::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    background: var(--gradient-danger);
+    border-radius: 50%;
+    opacity: 0.4;
+    filter: blur(25px);
+    z-index: -1;
+    animation: pulse 3s infinite;
+}
+
+.confirmation-icon i {
+    font-size: 3rem;
+    color: white;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+}
+
+.confirmation-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-shadow: var(--glow-danger);
+}
+
+.confirmation-message {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    font-weight: 500;
+}
+
+.confirmation-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.confirm-btn {
+    background: var(--gradient-danger);
+    color: white;
+    border: none;
+    padding: 1.5rem 2.5rem;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: var(--glow-danger);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 140px;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.confirm-btn:hover {
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: var(--glow-danger), 0 15px 40px var(--shadow-danger);
+}
+
+.cancel-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 2px solid var(--border-primary);
+    padding: 1.5rem 2.5rem;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 140px;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cancel-btn:hover {
+    background: var(--gradient-primary);
+    border-color: var(--border-accent);
+    color: white;
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: var(--glow-primary);
+}
+
+/* Enhanced Form */
+.form-group {
+    margin-bottom: 3rem;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.form-group label i {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-primary);
+    border-radius: 20px;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    transition: all 0.4s ease;
+    font-weight: 600;
+    backdrop-filter: blur(25px);
+}
+
+.input-container input:focus {
+    outline: none;
+    border-color: var(--border-accent);
+    box-shadow: var(--glow-primary), 0 0 0 6px var(--shadow-primary);
+    transform: translateY(-4px);
+}
+
+.input-container input::placeholder {
+    color: var(--text-muted);
+}
+
+.website-icon {
+    position: absolute;
+    right: 1.5rem;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--gradient-primary);
+    color: white;
+    font-size: 1rem;
+    z-index: 2;
+    box-shadow: var(--glow-primary);
+}
+
+.password-container input {
+    padding-left: 8rem;
+}
+
+.toggle-password,
+.generate-password {
+    position: absolute;
+    left: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+    z-index: 2;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.generate-password {
+    left: 4rem;
+}
+
+.toggle-password:hover,
+.generate-password:hover {
+    background: var(--bg-card);
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.password-strength {
+    margin-top: 1.2rem;
+}
+
+.strength-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--gradient-primary);
+    transition: all 0.5s ease;
+    border-radius: 4px;
+}
+
+.strength-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.save-btn {
+    width: 100%;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 2rem;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: var(--glow-primary);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.save-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--glow-primary), 0 20px 50px var(--shadow-primary);
+}
+
+.save-btn:active {
+    transform: translateY(-2px);
+}
+
+/* Enhanced Toast Notifications */
+.toast-container {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.toast {
+    background: var(--gradient-card);
+    border: 2px solid var(--border-secondary);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    color: white;
+    box-shadow: 0 20px 50px var(--shadow-dark);
+    animation: slideInRight 0.5s ease;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 450px;
+    backdrop-filter: blur(25px);
+    font-weight: 600;
+}
+
+.toast.success {
+    border-left: 5px solid var(--success-color);
+    box-shadow: var(--glow-secondary), 0 20px 50px var(--shadow-dark);
+}
+
+.toast.error {
+    border-left: 5px solid var(--danger-color);
+    box-shadow: var(--glow-danger), 0 20px 50px var(--shadow-dark);
+}
+
+.toast.info {
+    border-left: 5px solid var(--accent-color);
+    box-shadow: var(--glow-accent), 0 20px 50px var(--shadow-dark);
+}
+
+.toast i {
+    font-size: 1.5rem;
+}
+
+.toast.success i {
+    color: var(--success-color);
+}
+
+.toast.error i {
+    color: var(--danger-color);
+}
+
+.toast.info i {
+    color: var(--accent-color);
+}
+
+/* Enhanced Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(80px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .logo {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .logo-text h1 {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .stats-cards {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .modal {
+        padding: 2.5rem;
+        margin: 1rem;
+    }
+    
+    .confirmation-modal {
+        padding: 2.5rem;
+        margin: 1rem;
+    }
+    
+    .password-item-header {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+    
+    .password-item-actions {
+        align-self: stretch;
+        justify-content: center;
+    }
+    
+    .password-detail {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .empty-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .confirmation-actions {
+        flex-direction: column;
+    }
+    
+    .confirm-btn,
+    .cancel-btn {
+        width: 100%;
+    }
+    
+    .toast-container {
+        top: 20px;
+        right: 20px;
+        left: 20px;
+    }
+    
+    .toast {
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .add-btn {
+        padding: 1.5rem 2.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .stat-card {
+        padding: 2rem;
+    }
+    
+    .password-item {
+        padding: 2.5rem;
+    }
+    
+    .modal {
+        padding: 2rem;
+    }
+    
+    .confirmation-modal {
+        padding: 2rem;
+    }
+}
+
+/* Additional Enhancements */
+.empty-search {
+    text-align: center;
+    padding: 4rem;
+    background: var(--gradient-card);
+    border-radius: 25px;
+    border: 2px solid var(--border-primary);
+    margin-top: 3rem;
+    backdrop-filter: blur(25px);
+}
+
+.empty-search i {
+    font-size: 4rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.empty-search h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.empty-search p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 6px;
+    box-shadow: var(--glow-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-secondary);
+}
+
+/* Selection Styling */
+::selection {
+    background: var(--primary-color);
+    color: white;
+}
+
+::-moz-selection {
+    background: var(--primary-color);
+    color: white;
+}
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+            <div class="shape shape-6"></div>
+        </div>
+        <div class="gradient-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="logo-glow"></div>
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>مدير كلمات المرور</h1>
+                    <span class="version">Khalid</span>
+                </div>
+            </div>
+            
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number" id="totalPasswords">0</div>
+                    <div class="stat-label">كلمة مرور محفوظة</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-shield-check"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">أمان محلي</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number" id="lastAdded">-</div>
+                    <div class="stat-label">آخر إضافة</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Password Button -->
+        <button id="addPasswordBtn" class="add-btn">
+            <div class="btn-glow"></div>
+            <div class="btn-content">
+                <i class="fas fa-plus"></i>
+                <span>إضافة كلمة مرور جديدة</span>
+            </div>
+        </button>
+
+        <!-- Search Container -->
+        <div id="searchContainer" class="search-container" style="display: none;">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="البحث في كلمات المرور...">
+                <button id="clearSearch" class="clear-search">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state">
+            <div class="empty-icon">
+                <div class="empty-glow"></div>
+                <i class="fas fa-lock"></i>
+            </div>
+            <h2>لا توجد كلمات مرور محفوظة</h2>
+            <p>ابدأ بإضافة كلمة مرور جديدة لحفظها بأمان</p>
+            <div class="empty-features">
+                <div class="feature">
+                    <i class="fas fa-check"></i>
+                    <span>تشفير محلي آمن</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check"></i>
+                    <span>أيقونات تلقائية للمواقع</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check"></i>
+                    <span>مولد كلمات مرور قوية</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check"></i>
+                    <span>بحث سريع ومتقدم</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passwords List -->
+        <div id="passwordsList" class="passwords-list" style="display: none;"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-plus-circle"></i>
+                    <h2>إضافة كلمة مرور جديدة</h2>
+                </div>
+                <button id="closeBtn" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="modal-description">أملأ المعلومات المطلوبة لحفظ كلمة مرور جديدة</p>
+            
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="website">
+                        <i class="fas fa-globe"></i>
+                        الموقع الإلكتروني
+                    </label>
+                    <div class="input-container">
+                        <input type="text" id="website" name="website" placeholder="مثال: google.com" required>
+                        <div id="websiteIcon" class="website-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i>
+                        اسم المستخدم/البريد الإلكتروني
+                    </label>
+                    <div class="input-container">
+                        <input type="text" id="username" name="username" placeholder="مثال: user@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-key"></i>
+                        كلمة المرور
+                    </label>
+                    <div class="input-container password-container">
+                        <button type="button" id="togglePassword" class="toggle-password" title="إظهار/إخفاء كلمة المرور">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button type="button" id="generatePassword" class="generate-password" title="توليد كلمة مرور قوية">
+                            <i class="fas fa-magic"></i>
+                        </button>
+                        <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+                    </div>
+                    <div id="passwordStrength" class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill"></div>
+                        </div>
+                        <div class="strength-text">قوة كلمة المرور</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="save-btn">
+                    <i class="fas fa-save"></i>
+                    حفظ كلمة المرور
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationOverlay" class="modal-overlay">
+        <div class="confirmation-modal">
+            <div class="confirmation-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3 class="confirmation-title">تأكيد الحذف</h3>
+            <p class="confirmation-message">هل أنت متأكد من حذف كلمة المرور هذه؟ </p>
+            <div class="confirmation-actions">
+                <button id="confirmDeleteBtn" class="confirm-btn">
+                    <i class="fas fa-trash"></i>
+                    <span>حذف</span>
+                </button>
+                <button id="cancelDeleteBtn" class="cancel-btn">
+                    <i class="fas fa-times"></i>
+                    <span>إلغاء</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// DOM Elements
+const addPasswordBtn = document.getElementById('addPasswordBtn');
+const modalOverlay = document.getElementById('modalOverlay');
+const closeBtn = document.getElementById('closeBtn');
+const passwordForm = document.getElementById('passwordForm');
+const emptyState = document.getElementById('emptyState');
+const passwordsList = document.getElementById('passwordsList');
+const searchContainer = document.getElementById('searchContainer');
+const searchInput = document.getElementById('searchInput');
+const clearSearch = document.getElementById('clearSearch');
+const togglePassword = document.getElementById('togglePassword');
+const generatePassword = document.getElementById('generatePassword');
+const passwordInput = document.getElementById('password');
+const websiteInput = document.getElementById('website');
+const websiteIcon = document.getElementById('websiteIcon');
+const passwordStrength = document.getElementById('passwordStrength');
+const totalPasswordsEl = document.getElementById('totalPasswords');
+const lastAddedEl = document.getElementById('lastAdded');
+const toastContainer = document.getElementById('toastContainer');
+
+// Confirmation Modal Elements
+const confirmationOverlay = document.getElementById('confirmationOverlay');
+const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+
+// Storage key
+const STORAGE_KEY = 'passwordManager_passwords_khalid_final';
+
+// Global variable for delete confirmation
+let passwordToDelete = null;
+
+// Website icons mapping - Extended list
+const websiteIcons = {
+    // Social Media
+    'facebook.com': 'fab fa-facebook',
+    'twitter.com': 'fab fa-twitter',
+    'x.com': 'fab fa-x-twitter',
+    'instagram.com': 'fab fa-instagram',
+    'linkedin.com': 'fab fa-linkedin',
+    'snapchat.com': 'fab fa-snapchat',
+    'tiktok.com': 'fab fa-tiktok',
+    'pinterest.com': 'fab fa-pinterest',
+    'reddit.com': 'fab fa-reddit',
+    'discord.com': 'fab fa-discord',
+    'telegram.org': 'fab fa-telegram',
+    'whatsapp.com': 'fab fa-whatsapp',
+    'skype.com': 'fab fa-skype',
+    'viber.com': 'fab fa-viber',
+    
+    // Google Services
+    'google.com': 'fab fa-google',
+    'gmail.com': 'fas fa-envelope',
+    'youtube.com': 'fab fa-youtube',
+    'drive.google.com': 'fab fa-google-drive',
+    'maps.google.com': 'fas fa-map-marked-alt',
+    'photos.google.com': 'fas fa-images',
+    
+    // Microsoft Services
+    'microsoft.com': 'fab fa-microsoft',
+    'outlook.com': 'fas fa-envelope',
+    'office.com': 'fas fa-file-alt',
+    'onedrive.com': 'fas fa-cloud',
+    'teams.microsoft.com': 'fas fa-users',
+    'xbox.com': 'fab fa-xbox',
+    
+    // Apple Services
+    'apple.com': 'fab fa-apple',
+    'icloud.com': 'fab fa-apple',
+    'itunes.com': 'fab fa-apple',
+    
+    // Development & Tech
+    'github.com': 'fab fa-github',
+    'gitlab.com': 'fab fa-gitlab',
+    'stackoverflow.com': 'fab fa-stack-overflow',
+    'codepen.io': 'fab fa-codepen',
+    'figma.com': 'fab fa-figma',
+    'adobe.com': 'fas fa-palette',
+    'canva.com': 'fas fa-paint-brush',
+    'notion.so': 'fas fa-sticky-note',
+    'trello.com': 'fab fa-trello',
+    'slack.com': 'fab fa-slack',
+    'bitbucket.org': 'fab fa-bitbucket',
+    'jira.atlassian.com': 'fab fa-jira',
+    
+    // Entertainment
+    'netflix.com': 'fas fa-film',
+    'spotify.com': 'fab fa-spotify',
+    'twitch.tv': 'fab fa-twitch',
+    'steam.com': 'fab fa-steam',
+    'epicgames.com': 'fas fa-gamepad',
+    'playstation.com': 'fab fa-playstation',
+    'hulu.com': 'fas fa-tv',
+    'disneyplus.com': 'fas fa-magic',
+    'primevideo.com': 'fas fa-video',
+    
+    // E-commerce
+    'amazon.com': 'fab fa-amazon',
+    'ebay.com': 'fab fa-ebay',
+    'aliexpress.com': 'fas fa-shopping-cart',
+    'shopify.com': 'fab fa-shopify',
+    'etsy.com': 'fab fa-etsy',
+    'walmart.com': 'fas fa-store',
+    'target.com': 'fas fa-bullseye',
+    
+    // Finance & Payment
+    'paypal.com': 'fab fa-paypal',
+    'stripe.com': 'fab fa-stripe',
+    'visa.com': 'fab fa-cc-visa',
+    'mastercard.com': 'fab fa-cc-mastercard',
+    'americanexpress.com': 'fab fa-cc-amex',
+    'discover.com': 'fab fa-cc-discover',
+    
+    // Cloud Storage
+    'dropbox.com': 'fab fa-dropbox',
+    'box.com': 'fas fa-box',
+    'mega.nz': 'fas fa-cloud',
+    'mediafire.com': 'fas fa-cloud-upload-alt',
+    
+    // Communication
+    'zoom.us': 'fas fa-video',
+    'meet.google.com': 'fas fa-video',
+    'webex.com': 'fas fa-video',
+    
+    // News & Media
+    'wordpress.com': 'fab fa-wordpress',
+    'medium.com': 'fab fa-medium',
+    'blogger.com': 'fab fa-blogger',
+    'tumblr.com': 'fab fa-tumblr',
+    
+    // Search Engines
+    'yahoo.com': 'fab fa-yahoo',
+    'bing.com': 'fas fa-search',
+    'duckduckgo.com': 'fas fa-search',
+    'yandex.com': 'fab fa-yandex',
+    
+    // Others
+    'wikipedia.org': 'fab fa-wikipedia-w',
+    'archive.org': 'fas fa-archive',
+    'coursera.org': 'fas fa-graduation-cap',
+    'udemy.com': 'fas fa-graduation-cap',
+    'khan academy.org': 'fas fa-graduation-cap'
+};
+
+// Load passwords on page load
+document.addEventListener('DOMContentLoaded', function() {
+    loadPasswords();
+    updateStats();
+    initializeEventListeners();
+    initializeAnimations();
+});
+
+// Initialize Event Listeners
+function initializeEventListeners() {
+    if (addPasswordBtn) {
+        addPasswordBtn.addEventListener('click', openModal);
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+    
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+    }
+
+    // Confirmation Modal Event Listeners
+    if (confirmDeleteBtn) {
+        confirmDeleteBtn.addEventListener('click', confirmDelete);
+    }
+    
+    if (cancelDeleteBtn) {
+        cancelDeleteBtn.addEventListener('click', cancelDelete);
+    }
+    
+    if (confirmationOverlay) {
+        confirmationOverlay.addEventListener('click', function(e) {
+            if (e.target === confirmationOverlay) {
+                cancelDelete();
+            }
+        });
+    }
+
+    if (passwordForm) {
+        passwordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            savePassword();
+        });
+    }
+
+    if (togglePassword) {
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            const icon = togglePassword.querySelector('i');
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        });
+    }
+
+    if (generatePassword) {
+        generatePassword.addEventListener('click', function() {
+            const generatedPassword = generateStrongPassword();
+            passwordInput.value = generatedPassword;
+            passwordInput.setAttribute('type', 'text');
+            
+            const icon = togglePassword.querySelector('i');
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+            
+            updatePasswordStrength(generatedPassword);
+            showToast('تم توليد كلمة مرور قوية!', 'success', 'fas fa-magic');
+        });
+    }
+
+    if (passwordInput) {
+        passwordInput.addEventListener('input', function() {
+            updatePasswordStrength(this.value);
+        });
+    }
+
+    if (websiteInput) {
+        websiteInput.addEventListener('input', function() {
+            updateWebsiteIcon(this.value);
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            searchPasswords(this.value);
+        });
+    }
+
+    if (clearSearch) {
+        clearSearch.addEventListener('click', function() {
+            searchInput.value = '';
+            searchPasswords('');
+        });
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (modalOverlay && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+            if (confirmationOverlay && confirmationOverlay.classList.contains('active')) {
+                cancelDelete();
+            }
+        }
+        
+        if (e.ctrlKey && e.key === 'n') {
+            e.preventDefault();
+            openModal();
+        }
+        
+        if (e.ctrlKey && e.key === 'f') {
+            e.preventDefault();
+            if (searchContainer && searchContainer.style.display !== 'none') {
+                searchInput.focus();
+            }
+        }
+    });
+}
+
+// Initialize Animations
+function initializeAnimations() {
+    // Add stagger animation to password items
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100);
+            }
+        });
+    });
+
+    // Observe password items for animation
+    document.querySelectorAll('.password-item').forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'all 0.6s ease';
+        observer.observe(item);
+    });
+}
+
+// Modal Functions
+function openModal() {
+    if (modalOverlay) {
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (websiteInput) {
+            websiteInput.focus();
+        }
+        
+        // Add entrance animation
+        const modal = document.querySelector('.modal');
+        if (modal) {
+            modal.style.transform = 'translateY(50px) scale(0.9)';
+            modal.style.opacity = '0';
+            
+            setTimeout(() => {
+                modal.style.transform = 'translateY(0) scale(1)';
+                modal.style.opacity = '1';
+            }, 50);
+        }
+    }
+}
+
+function closeModal() {
+    const modal = document.querySelector('.modal');
+    if (modal) {
+        modal.style.transform = 'translateY(50px) scale(0.9)';
+        modal.style.opacity = '0';
+        
+        setTimeout(() => {
+            if (modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+            document.body.style.overflow = 'auto';
+            if (passwordForm) {
+                passwordForm.reset();
+            }
+            if (passwordInput) {
+                passwordInput.setAttribute('type', 'password');
+            }
+            
+            const icon = togglePassword ? togglePassword.querySelector('i') : null;
+            if (icon) {
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+            
+            updateWebsiteIcon('');
+            updatePasswordStrength('');
+        }, 300);
+    }
+}
+
+// Confirmation Modal Functions
+function showDeleteConfirmation(id) {
+    passwordToDelete = id;
+    if (confirmationOverlay) {
+        confirmationOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Add entrance animation
+        const modal = document.querySelector('.confirmation-modal');
+        if (modal) {
+            modal.style.transform = 'translateY(50px) scale(0.9)';
+            modal.style.opacity = '0';
+            
+            setTimeout(() => {
+                modal.style.transform = 'translateY(0) scale(1)';
+                modal.style.opacity = '1';
+            }, 50);
+        }
+    }
+}
+
+function confirmDelete() {
+    if (passwordToDelete) {
+        const passwords = getPasswords();
+        const filteredPasswords = passwords.filter(p => p.id !== passwordToDelete);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredPasswords));
+        loadPasswords();
+        updateStats();
+        showToast('تم حذف كلمة المرور!', 'success', 'fas fa-trash');
+        passwordToDelete = null;
+    }
+    cancelDelete();
+}
+
+function cancelDelete() {
+    const modal = document.querySelector('.confirmation-modal');
+    if (modal) {
+        modal.style.transform = 'translateY(50px) scale(0.9)';
+        modal.style.opacity = '0';
+        
+        setTimeout(() => {
+            if (confirmationOverlay) {
+                confirmationOverlay.classList.remove('active');
+            }
+            document.body.style.overflow = 'auto';
+            passwordToDelete = null;
+        }, 300);
+    }
+}
+
+// Website Icon Functions
+function updateWebsiteIcon(url) {
+    if (!websiteIcon) return;
+    
+    if (!url) {
+        websiteIcon.innerHTML = '<i class="fas fa-globe"></i>';
+        return;
+    }
+
+    // Clean URL
+    const cleanUrl = url.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '');
+    const domain = cleanUrl.split('/')[0];
+
+    // Find matching icon
+    const iconClass = websiteIcons[domain] || getIconByDomain(domain);
+    
+    if (iconClass) {
+        websiteIcon.innerHTML = `<i class="${iconClass}"></i>`;
+        websiteIcon.style.fontSize = '';
+        websiteIcon.style.fontWeight = '';
+    } else {
+        // Use first letter of domain as fallback
+        const firstLetter = domain.charAt(0).toUpperCase();
+        websiteIcon.innerHTML = firstLetter;
+        websiteIcon.style.fontSize = '16px';
+        websiteIcon.style.fontWeight = 'bold';
+    }
+}
+
+function getIconByDomain(domain) {
+    // Additional logic for common patterns
+    if (domain.includes('mail') || domain.includes('email')) {
+        return 'fas fa-envelope';
+    }
+    if (domain.includes('shop') || domain.includes('store') || domain.includes('buy')) {
+        return 'fas fa-shopping-cart';
+    }
+    if (domain.includes('bank') || domain.includes('pay') || domain.includes('finance')) {
+        return 'fas fa-credit-card';
+    }
+    if (domain.includes('cloud') || domain.includes('drive') || domain.includes('storage')) {
+        return 'fas fa-cloud';
+    }
+    if (domain.includes('game') || domain.includes('play') || domain.includes('gaming')) {
+        return 'fas fa-gamepad';
+    }
+    if (domain.includes('news') || domain.includes('blog') || domain.includes('article')) {
+        return 'fas fa-newspaper';
+    }
+    if (domain.includes('music') || domain.includes('audio') || domain.includes('sound')) {
+        return 'fas fa-music';
+    }
+    if (domain.includes('video') || domain.includes('tv') || domain.includes('stream')) {
+        return 'fas fa-video';
+    }
+    if (domain.includes('learn') || domain.includes('edu') || domain.includes('course')) {
+        return 'fas fa-graduation-cap';
+    }
+    if (domain.includes('health') || domain.includes('medical') || domain.includes('doctor')) {
+        return 'fas fa-heartbeat';
+    }
+    
+    return null;
+}
+
+// Password Generation
+function generateStrongPassword(length = 20) {
+    const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const numbers = '0123456789';
+    const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+    
+    const allChars = lowercase + uppercase + numbers + symbols;
+    let password = '';
+    
+    // Ensure at least one character from each category
+    password += lowercase[Math.floor(Math.random() * lowercase.length)];
+    password += uppercase[Math.floor(Math.random() * uppercase.length)];
+    password += numbers[Math.floor(Math.random() * numbers.length)];
+    password += symbols[Math.floor(Math.random() * symbols.length)];
+    
+    // Fill the rest randomly
+    for (let i = 4; i < length; i++) {
+        password += allChars[Math.floor(Math.random() * allChars.length)];
+    }
+    
+    // Shuffle the password
+    return password.split('').sort(() => Math.random() - 0.5).join('');
+}
+
+// Password Strength
+function updatePasswordStrength(password) {
+    if (!passwordStrength) return;
+    
+    const strengthFill = passwordStrength.querySelector('.strength-fill');
+    const strengthText = passwordStrength.querySelector('.strength-text');
+    
+    if (!strengthFill || !strengthText) return;
+    
+    if (!password) {
+        strengthFill.style.width = '0%';
+        strengthText.textContent = 'قوة كلمة المرور';
+        return;
+    }
+    
+    let score = 0;
+    let feedback = '';
+    
+    // Length check
+    if (password.length >= 8) score += 20;
+    if (password.length >= 12) score += 15;
+    if (password.length >= 16) score += 15;
+    
+    // Character variety checks
+    if (/[a-z]/.test(password)) score += 12;
+    if (/[A-Z]/.test(password)) score += 12;
+    if (/[0-9]/.test(password)) score += 13;
+    if (/[^A-Za-z0-9]/.test(password)) score += 13;
+    
+    // Determine strength level
+    if (score < 30) {
+        feedback = 'ضعيفة جداً';
+        strengthFill.style.background = '#ff3366';
+    } else if (score < 50) {
+        feedback = 'ضعيفة';
+        strengthFill.style.background = '#ffaa00';
+    } else if (score < 70) {
+        feedback = 'متوسطة';
+        strengthFill.style.background = '#ffaa00';
+    } else if (score < 90) {
+        feedback = 'قوية';
+        strengthFill.style.background = '#00ff88';
+    } else {
+        feedback = 'قوية جداً';
+        strengthFill.style.background = '#00ff88';
+    }
+    
+    strengthFill.style.width = `${Math.min(score, 100)}%`;
+    strengthText.textContent = `قوة كلمة المرور: ${feedback}`;
+}
+
+// Save Password
+function savePassword() {
+    if (!websiteInput || !passwordInput) return;
+    
+    const website = websiteInput.value.trim();
+    const username = document.getElementById('username') ? document.getElementById('username').value.trim() : '';
+    const password = passwordInput.value.trim();
+    
+    if (!website || !username || !password) {
+        showToast('يرجى ملء جميع الحقول المطلوبة', 'error', 'fas fa-exclamation-triangle');
+        return;
+    }
+    
+    // Check for duplicate entries
+    const passwords = getPasswords();
+    const duplicate = passwords.find(p => 
+        p.website.toLowerCase() === website.toLowerCase() && 
+        p.username.toLowerCase() === username.toLowerCase()
+    );
+    
+    if (duplicate) {
+        if (!confirm('يوجد حساب مماثل محفوظ مسبقاً. هل تريد استبداله؟')) {
+            return;
+        }
+        // Remove the duplicate
+        const filteredPasswords = passwords.filter(p => p.id !== duplicate.id);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredPasswords));
+    }
+    
+    const passwordData = {
+        id: Date.now(),
+        website: website,
+        username: username,
+        password: password,
+        createdAt: new Date().toISOString(),
+        favicon: getWebsiteIcon(website)
+    };
+    
+    const updatedPasswords = getPasswords();
+    updatedPasswords.push(passwordData);
+    
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPasswords));
+    
+    loadPasswords();
+    updateStats();
+    closeModal();
+    
+    showToast('تم حفظ كلمة المرور بنجاح!', 'success', 'fas fa-check-circle');
+}
+
+function getWebsiteIcon(url) {
+    const cleanUrl = url.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '');
+    const domain = cleanUrl.split('/')[0];
+    return websiteIcons[domain] || getIconByDomain(domain) || 'fas fa-globe';
+}
+
+// Load and Display Passwords
+function getPasswords() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+}
+
+function loadPasswords() {
+    const passwords = getPasswords();
+    
+    if (passwords.length === 0) {
+        if (emptyState) emptyState.style.display = 'block';
+        if (passwordsList) passwordsList.style.display = 'none';
+        if (searchContainer) searchContainer.style.display = 'none';
+    } else {
+        if (emptyState) emptyState.style.display = 'none';
+        if (passwordsList) passwordsList.style.display = 'block';
+        if (searchContainer) searchContainer.style.display = 'block';
+        displayPasswords(passwords);
+    }
+}
+
+function displayPasswords(passwords) {
+    if (!passwordsList) return;
+    
+    passwordsList.innerHTML = '';
+    
+    // Sort passwords by creation date (newest first)
+    const sortedPasswords = passwords.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    
+    sortedPasswords.forEach((password, index) => {
+        const passwordItem = createPasswordItem(password);
+        passwordItem.style.animationDelay = `${index * 0.1}s`;
+        passwordsList.appendChild(passwordItem);
+    });
+    
+    // Re-initialize animations
+    setTimeout(initializeAnimations, 100);
+}
+
+function createPasswordItem(password) {
+    const div = document.createElement('div');
+    div.className = 'password-item';
+    div.innerHTML = `
+        <div class="password-item-header">
+            <div class="password-item-title">
+                <div class="website-favicon">
+                    <i class="${password.favicon || 'fas fa-globe'}"></i>
+                </div>
+                <span class="website-name">${escapeHtml(password.website)}</span>
+            </div>
+            <div class="password-item-actions">
+                <button class="action-btn" onclick="copyToClipboard('${escapeHtml(password.username)}')" title="نسخ اسم المستخدم">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="action-btn" onclick="copyToClipboard('${escapeHtml(password.password)}')" title="نسخ كلمة المرور">
+                    <i class="fas fa-key"></i>
+                </button>
+                <button class="action-btn" onclick="togglePasswordVisibility(this, '${escapeHtml(password.password)}')" title="إظهار/إخفاء كلمة المرور">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn danger" onclick="showDeleteConfirmation(${password.id})" title="حذف">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+        <div class="password-item-details">
+            <div class="password-detail">
+                <span class="password-detail-label">اسم المستخدم:</span>
+                <span class="password-detail-value">${escapeHtml(password.username)}</span>
+            </div>
+            <div class="password-detail">
+                <span class="password-detail-label">كلمة المرور:</span>
+                <span class="password-detail-value password-value">
+                    ${'•'.repeat(password.password.length)}
+                </span>
+            </div>
+            <div class="password-detail">
+                <span class="password-detail-label">تاريخ الإضافة:</span>
+                <span class="password-detail-value">${formatDateGregorian(password.createdAt)}</span>
+            </div>
+        </div>
+    `;
+    return div;
+}
+
+// Utility Functions
+function copyToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast('تم النسخ بنجاح!', 'success', 'fas fa-copy');
+        }).catch(() => {
+            fallbackCopyToClipboard(text);
+        });
+    } else {
+        fallbackCopyToClipboard(text);
+    }
+}
+
+function fallbackCopyToClipboard(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    
+    try {
+        document.execCommand('copy');
+        showToast('تم النسخ بنجاح!', 'success', 'fas fa-copy');
+    } catch (err) {
+        showToast('فشل في النسخ', 'error', 'fas fa-exclamation-triangle');
+    }
+    
+    document.body.removeChild(textarea);
+}
+
+function togglePasswordVisibility(button, password) {
+    const passwordValue = button.closest('.password-item').querySelector('.password-value');
+    const icon = button.querySelector('i');
+    
+    if (icon.classList.contains('fa-eye')) {
+        passwordValue.textContent = password;
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+        button.title = 'إخفاء كلمة المرور';
+    } else {
+        passwordValue.textContent = '•'.repeat(password.length);
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+        button.title = 'إظهار كلمة المرور';
+    }
+}
+
+function searchPasswords(searchTerm) {
+    const passwords = getPasswords();
+    
+    if (!searchTerm.trim()) {
+        displayPasswords(passwords);
+        return;
+    }
+    
+    const filteredPasswords = passwords.filter(password => 
+        password.website.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        password.username.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    
+    displayPasswords(filteredPasswords);
+    
+    if (filteredPasswords.length === 0 && passwordsList) {
+        passwordsList.innerHTML = `
+            <div class="empty-search">
+                <i class="fas fa-search"></i>
+                <h3>لا توجد نتائج</h3>
+                <p>لم يتم العثور على كلمات مرور تطابق البحث "${searchTerm}"</p>
+            </div>
+        `;
+    }
+}
+
+function updateStats() {
+    const passwords = getPasswords();
+    if (totalPasswordsEl) {
+        totalPasswordsEl.textContent = passwords.length;
+    }
+    
+    if (lastAddedEl && passwords.length > 0) {
+        const lastPassword = passwords[passwords.length - 1];
+        const lastDate = new Date(lastPassword.createdAt);
+        const now = new Date();
+        const diffTime = Math.abs(now - lastDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays === 1) {
+            lastAddedEl.textContent = 'اليوم';
+        } else if (diffDays <= 7) {
+            lastAddedEl.textContent = `${diffDays} أيام`;
+        } else {
+            lastAddedEl.textContent = formatDateGregorian(lastPassword.createdAt);
+        }
+    } else if (lastAddedEl) {
+        lastAddedEl.textContent = '-';
+    }
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Format date in Gregorian calendar (Arabic locale)
+function formatDateGregorian(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ar-EG', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        calendar: 'gregory'
+    });
+}
+
+// Toast Notifications
+function showToast(message, type = 'info', icon = 'fas fa-info-circle') {
+    if (!toastContainer) return;
+    
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+        <i class="${icon}"></i>
+        <span>${message}</span>
+    `;
+    
+    toastContainer.appendChild(toast);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        toast.style.animation = 'slideInRight 0.4s ease reverse';
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.parentNode.removeChild(toast);
+            }
+        }, 400);
+    }, 5000);
+}
+
+// Performance optimization
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Debounced search
+const debouncedSearch = debounce(searchPasswords, 300);
+if (searchInput) {
+    searchInput.removeEventListener('input', searchPasswords);
+    searchInput.addEventListener('input', function() {
+        debouncedSearch(this.value);
+    });
+}
+    </script>
+</body>
+</html>
+
